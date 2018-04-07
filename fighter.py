@@ -34,16 +34,16 @@ class Fighter(Observable):
         else:
             fighting_style = self.weapon(self.fighting_style)
 
-        injury = factory.FactoryForAttackMainClass().create(
+        injuries = factory.FactoryForAttackMainClass().create(
             movement, attack_main_module.AttackMainClass, fighting_style)
         
         if len(self.armour_properties) > 0:
             for armour in self.armour_properties:
                 if movement == self.oponent.armour().areas_to_defend:
                     after_defese = armour().defense()
-                    injury = injury - after_defese 
+                    injuries = injuries - after_defese 
         
-        self.update(injury)
+        self.update(injuries)
 
         if fighting_style_state:
             self.set_fighting_style()     
@@ -70,12 +70,20 @@ class Fighter(Observable):
 
         return subclasses
 
-    def update(self, injury):
-        self.oponent.health_points = self.oponent.health_points - injury
+    def update(self, injuries):
+        self.oponent.health_points = self.oponent.health_points - injuries
 
         print("Health points of {} is {}".format(self.oponent.name, self.oponent.health_points))
+
+    def set_armour(self, new_armour):
+        if new_armour not in self.armour_properties:
+            self.armour_properties.append(new_armour)
+        self.armour = new_armour
+
+    def set_weapon(self, new_weapon):
+        self.weapon = new_weapon    
 
     def __str__(self):
         representation = "{}\n".format(self.name)
         representation += "{}\n".format(self.fighting_style.__str__())
-        return representation
+        return representation    
