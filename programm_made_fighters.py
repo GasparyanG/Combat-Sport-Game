@@ -27,7 +27,8 @@ class ProgrammMadeFighters:
 
 class Oponents(ProgrammMadeFighters):
     def create_oponents(self):
-        list_of_aweosome_
+        list_of_awesome_fighters = []
+
         list_of_regular_fighters = self.create_fighters()
         for index, regular_fighter in enumerate(list_of_regular_fighters):
             if index < len(list_of_regular_fighters) / 2:
@@ -35,16 +36,21 @@ class Oponents(ProgrammMadeFighters):
                 regular_fighter.set_weapon(self.weapon_genrator())
             else:
                 armour_list = armour.Armour.__subclasses__()
+                
                 for every_armour in armour_list:
-                    regular_fighter.set_armour(every_armour()) 
+                    regular_fighter.set_armour(every_armour) 
+            
+            list_of_awesome_fighters.append(regular_fighter)
 
+        return list_of_awesome_fighters    
+                
 
     def armour_generator(self):
         armour_list = armour.Armour.__subclasses__()
         random_armour = random.choice(armour_list)
-        return random_armour() 
+        return random_armour 
         
     def weapon_genrator(self):
         weapon_list = weapon.Weapon.__subclasses__()
         random_weapon = random.choice(weapon_list)
-        return random_weapon()  
+        return random_weapon  

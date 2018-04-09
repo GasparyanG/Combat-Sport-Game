@@ -79,6 +79,6 @@ class ExistingFighterChoice(FighterToPlayWith):
             return False 
 
 
-user_choice = options_to_choose.OptionsToChoose().offering_options(FighterToPlayWith)
-
-print(factory.Factory().create(user_choice, FighterToPlayWith))            
+# user_choice = options_to_choose.OptionsToChoose().offering_options(FighterToPlayWith)
+# 
+# print(factory.Factory().create(user_choice, FighterToPlayWith))            

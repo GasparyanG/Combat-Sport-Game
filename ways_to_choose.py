@@ -1,6 +1,4 @@
-# import options_to_choose
 import factory
-# import fighting_style
 
 class WaysToChoose:
     def is_used(self, combarable_object):
@@ -143,10 +141,14 @@ class DictionaryIterator(Iterator):
         list_of_keys = dict_converted_to_list[0]
         list_of_values = dict_converted_to_list[1]
 
-        # this will point to next item
-        key_value = {list_of_keys[self.next_index] : list_of_values[self.next_index]}  
+        
+        if self.propertie == None:
+            key_value = {list_of_keys[self.next_index] : list_of_values[self.next_index]}
+            self.has_next()
+        else:
+            self.has_next()
+            key_value = {list_of_keys[self.next_index] : list_of_values[self.next_index]}
 
-        self.has_next()
         return key_value
 
     def has_next(self):

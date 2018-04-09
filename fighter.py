@@ -3,7 +3,7 @@ import attack_main_module
 import options_to_choose
 import ways_to_choose
 
-HEALTH_POINTS = 200
+HEALTH_POINTS = 50
 
 class Observable:
     def __init__(self):
@@ -29,7 +29,7 @@ class Fighter(Observable):
         
     def attack(self, movement, fighting_style_state = True):
         fighting_style = None
-        if weapon == None:
+        if self.weapon == None:
             fighting_style = self.fighting_style 
         else:
             fighting_style = self.weapon(self.fighting_style)
@@ -37,8 +37,8 @@ class Fighter(Observable):
         injuries = factory.FactoryForAttackMainClass().create(
             movement, attack_main_module.AttackMainClass, fighting_style)
         
-        if len(self.armour_properties) > 0:
-            for armour in self.armour_properties:
+        if len(self.oponent.armour_properties) > 0:
+            for armour in self.oponent.armour_properties:
                 if movement == self.oponent.armour().areas_to_defend:
                     after_defese = armour().defense()
                     injuries = injuries - after_defese 
@@ -50,15 +50,18 @@ class Fighter(Observable):
     
     def set_fighting_style(self):
         while True:
-            user_decision = input(options_to_choose.OptionsToChoose().
-                offering_options(ways_to_choose.WaysToChoose))
+            user_decision = options_to_choose.OptionsToChoose().offering_options(
+                ways_to_choose.WaysToChoose)
             
             subclasses = self.fighting_style_type_classes()
 
-            fighting_style = factory.FactoryForAttackMainClass().create(user_choice, ways_to_choose.WaysToChoose, subclasses)
-
+            fighting_style = factory.FactoryForAttackMainClass().create(user_decision, ways_to_choose.WaysToChoose, subclasses)
+            
+            print(fighting_style)
+            
             if fighting_style != None:
                 self.fighting_style = fighting_style
+                break
             else:
                 continue    
 
