@@ -1,5 +1,7 @@
 # Combat sport game with OOD
 
+![FVF](http://www.looponline.com.au/wp-content/uploads/2016/09/Mortal-Kombat-X-1.jpg)
+
 ### This code is flexible, because of many ood patterns and oop principles!
 
 
