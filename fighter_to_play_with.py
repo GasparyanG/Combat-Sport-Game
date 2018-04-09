@@ -77,8 +77,3 @@ class ExistingFighterChoice(FighterToPlayWith):
                 return True
         except ValueError:
             return False 
-
-
-# user_choice = options_to_choose.OptionsToChoose().offering_options(FighterToPlayWith)
-# 
-# print(factory.Factory().create(user_choice, FighterToPlayWith))            

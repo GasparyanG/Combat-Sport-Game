@@ -76,6 +76,9 @@ class FighterVsFighterGame(FightingGames):
         self.cxlvl_choice(self.oponent_cxlvl, sides)
 
 
-user_choice = options_to_choose.OptionsToChoose().offering_options(FightingGames)
+class LeaveGame(FightingGames):
+    def is_used(self, comparable_object):
+        return comparable_object == "2"
 
-Factory().create(user_choice, FightingGames)
+    def execute(self):
+        return False       
